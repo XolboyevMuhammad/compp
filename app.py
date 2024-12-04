@@ -44,9 +44,13 @@ import pickle
 import numpy as np
 import gzip
 
-# Gzip yordamida modelni yuklash
-with gzip.open('computer_price_model.pkl.gz', 'rb') as f:
-    model = pickle.load(f)
+# # Gzip yordamida modelni yuklash
+# with gzip.open('computer_price_model.pkl.gz', 'rb') as f:
+#     model = pickle.load(f)
+uploaded_file = st.file_uploader("Model faylini yuklang", type=["pkl.gz"])
+if uploaded_file is not None:
+    with gzip.open(uploaded_file, 'rb') as f:
+        model = pickle.load(f)
 
 # Nominal o'zgaruvchilar uchun label encoding  
 brand_mapping = {'Dell': 0, 'HP': 1, 'Lenovo': 2, 'Asus': 3, 'Acer': 4, 'Apple': 5}
